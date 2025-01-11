@@ -23,19 +23,23 @@
                         <p class="mb-4">Make your app management easy and fun!</p>
 
                         <!-- ************************* START FORM ************************* -->
-                        <form id="formAuthentication" class="mb-3" action="index.html" method="POST">
-                            <!-- USERNAME -->
+                        <form id="formAuthentication" class="mb-3" action="{{ route('front.register') }}"
+                            method="POST">
+                            @csrf
+                            <!-- NAME -->
                             <div class="mb-3">
-                                <label for="username" class="form-label">Username</label>
-                                <input type="text" class="form-control" id="username" name="username"
-                                    placeholder="Enter your username" autofocus />
+                                <label for="name" class="form-label">Name</label>
+                                <input type="text" class="form-control" id="name" name="name"
+                                    placeholder="Enter your username" value="{{ old('name') }}" autofocus />
+                                <x-input-error :messages="$errors->get('name')" class="mt-2" />
                             </div>
 
                             <!-- EMAIL -->
                             <div class="mb-3">
                                 <label for="email" class="form-label">Email</label>
                                 <input type="text" class="form-control" id="email" name="email"
-                                    placeholder="Enter your email" />
+                                    placeholder="Enter your email" value="{{ old('email') }}" />
+                                <x-input-error :messages="$errors->get('email')" class="mt-2" />
                             </div>
 
                             <!-- PASSWORD -->
@@ -47,20 +51,23 @@
                                         aria-describedby="password" />
                                     <span class="input-group-text cursor-pointer"><i class="bx bx-hide"></i></span>
                                 </div>
+                                <x-input-error :messages="$errors->get('password')" class="mt-2" />
                             </div>
 
                             <!-- CONFIRM PASSWORD -->
                             <div class="mb-3 form-password-toggle">
-                                <label class="form-label" for="password">Confirm Password</label>
+                                <label class="form-label" for="password_confirmation">Confirm Password</label>
                                 <div class="input-group input-group-merge">
-                                    <input type="password" id="password" class="form-control" name="password"
+                                    <input type="password" id="password_confirmation" class="form-control"
+                                        name="password_confirmation"
                                         placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;"
                                         aria-describedby="password" />
                                     <span class="input-group-text cursor-pointer"><i class="bx bx-hide"></i></span>
                                 </div>
+                                <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
                             </div>
 
-                            <div class="mb-3">
+                            {{-- <div class="mb-3">
                                 <div class="form-check">
                                     <input class="form-check-input" type="checkbox" id="terms-conditions"
                                         name="terms" />
@@ -69,7 +76,7 @@
                                         <a href="javascript:void(0);">privacy policy & terms</a>
                                     </label>
                                 </div>
-                            </div>
+                            </div> --}}
 
                             <button class="btn btn-primary d-grid w-100">Sign up</button>
                         </form>
@@ -77,7 +84,7 @@
 
                         <p class="text-center">
                             <span>Already have an account?</span>
-                            <a href="auth-login-basic.html">
+                            <a href="{{ route('front.login') }}">
                                 <span>Sign in instead</span>
                             </a>
                         </p>
