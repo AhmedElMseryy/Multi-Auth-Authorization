@@ -26,7 +26,7 @@
                      aria-label="Star themeselection/sneat-html-admin-template-free on GitHub">Star</a>
              </li>
 
-             <!-- User -->
+             <!--************************************************* User *************************************************-->
              <li class="nav-item navbar-dropdown dropdown-user dropdown">
                  <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">
                      <div class="avatar avatar-online">
@@ -35,6 +35,8 @@
                      </div>
                  </a>
                  <ul class="dropdown-menu dropdown-menu-end">
+
+                     <!-- USER INFO -->
                      <li>
                          <a class="dropdown-item" href="#">
                              <div class="d-flex">
@@ -45,27 +47,34 @@
                                      </div>
                                  </div>
                                  <div class="flex-grow-1">
-                                     <span class="fw-semibold d-block">John Doe</span>
-                                     <small class="text-muted">Admin</small>
+                                     <span class="fw-semibold d-block">{{ Auth::user()->name }}</span>
+                                     <small class="text-muted">User</small>
                                  </div>
                              </div>
                          </a>
                      </li>
+
                      <li>
                          <div class="dropdown-divider"></div>
                      </li>
+
+                     <!-- PROFILE -->
                      <li>
                          <a class="dropdown-item" href="#">
                              <i class="bx bx-user me-2"></i>
                              <span class="align-middle">My Profile</span>
                          </a>
                      </li>
+
+                     <!-- SETTINGS -->
                      <li>
                          <a class="dropdown-item" href="#">
                              <i class="bx bx-cog me-2"></i>
                              <span class="align-middle">Settings</span>
                          </a>
                      </li>
+
+                     <!-- BILLING -->
                      <li>
                          <a class="dropdown-item" href="#">
                              <span class="d-flex align-items-center align-middle">
@@ -79,15 +88,21 @@
                      <li>
                          <div class="dropdown-divider"></div>
                      </li>
+
+                     <!-- LOGOUT -->
                      <li>
-                         <a class="dropdown-item" href="auth-login-basic.html">
-                             <i class="bx bx-power-off me-2"></i>
-                             <span class="align-middle">Log Out</span>
-                         </a>
+                         <form action="{{ route('front.logout') }}" method="POST">
+                             @csrf
+                             <a class="dropdown-item" href="javascript:{}"
+                                 onclick="this.closest('form').submit();return false;">
+                                 <i class="bx bx-power-off me-2"></i>
+                                 <span class="align-middle">Log Out</span>
+                             </a>
+                         </form>
                      </li>
                  </ul>
              </li>
-             <!--/ User -->
+             <!--*************************************************/ User *************************************************-->
          </ul>
      </div>
  </nav>

@@ -23,6 +23,7 @@
 
                         <!-- ************************* START FORM ************************* -->
                         <form id="formAuthentication" class="mb-3" action="{{ route('front.login') }}" method="POST">
+                            @csrf
                             <!-- EMAIL -->
                             <div class="mb-3">
                                 <label for="email" class="form-label">Email</label>
